@@ -26,9 +26,7 @@ func main() {
 		}
 	}()
 
-	client := storeClientState{
-		storeClient: pb.NewStoreClient(conn),
-	}
+	client := storeClientState{pb.NewStoreClient(conn)}
 
 	if catalog, err = client.getCatalog(); err != nil {
 		log.Fatalf("getCatalog: %v", err)

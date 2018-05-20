@@ -11,10 +11,10 @@ import (
 )
 
 type storeClientState struct {
-	storeClient pb.StoreClient
+	pb.StoreClient
 }
 
-func (c storeClientState) getCatalog() ([]pb.CatalogResponse, error) {
+func (s storeClientState) getCatalog() ([]pb.CatalogResponse, error) {
 	var psc pb.Store_CatalogStreamClient
 	var catalog []pb.CatalogResponse
 	var err error
@@ -22,7 +22,7 @@ func (c storeClientState) getCatalog() ([]pb.CatalogResponse, error) {
 	ctx, cancelFunc := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancelFunc()
 
-	if psc, err = c.storeClient.CatalogStream(ctx, &pb.CatalogStreamRequest{}); err != nil {
+	if psc, err = s.CatalogStream(ctx, &pb.CatalogStreamRequest{}); err != nil {
 		return nil, errors.Wrap(err, "client.CatalogStream")
 	}
 
@@ -44,7 +44,7 @@ func (c storeClientState) getCatalog() ([]pb.CatalogResponse, error) {
 	return catalog, nil
 }
 
-func (c storeClientState) orderItem(userName string, itemID string) error {
+func (s storeClientState) orderItem(userName string, itemID string) error {
 	var response *pb.OrderResponse
 	var err error
 
@@ -52,7 +52,7 @@ func (c storeClientState) orderItem(userName string, itemID string) error {
 	defer cancelFunc()
 
 	request := pb.OrderItemRequest{ItemID: itemID, CustomerName: userName}
-	if response, err = c.storeClient.OrderItem(ctx, &request); err != nil {
+	if response, err = s.OrderItem(ctx, &request); err != nil {
 		return errors.Wrap(err, "client.OrderItem")
 	}
 
