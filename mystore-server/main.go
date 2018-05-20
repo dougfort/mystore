@@ -8,6 +8,8 @@ import (
 	"syscall"
 
 	"google.golang.org/grpc"
+
+	pb "github.com/dougfort/mystore/protobuf"
 )
 
 func main() {
@@ -22,8 +24,9 @@ func main() {
 	}
 
 	grpcServer = grpc.NewServer()
-
 	go stopServerOnSignal(grpcServer)
+
+	pb.RegisterStoreServer(grpcServer, NewMyStoreServer())
 
 	log.Printf("Server starts: listening on %s", serverAddress)
 	if err := grpcServer.Serve(listener); err != nil {
