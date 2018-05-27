@@ -6,7 +6,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	pb "github.com/dougfort/mystore/protobuf"
+	pb "github.com/dougfort/mystore/03/protobuf"
 )
 
 func main() {

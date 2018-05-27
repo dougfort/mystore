@@ -7,7 +7,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	pb "github.com/dougfort/mystore/protobuf"
+	pb "github.com/dougfort/mystore/02/protobuf"
 )
 
 type serverState struct {

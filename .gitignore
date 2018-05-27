@@ -12,5 +12,6 @@
 *.out
 
 # protobuf definitions
-protobuf/*.pb.go
-protobuf/*.pb.gw.go
+02/protobuf/*.pb.go
+03/protobuf/*.pb.go
+03/protobuf/*.pb.gw.go
