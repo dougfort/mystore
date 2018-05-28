@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package protobuf;
+
+import "google/api/annotations.proto";
+
+// Interface exported by the server.
+service Store {
+	// CatalogStream returns a stream of catalog entries
+	rpc CatalogStream(CatalogStreamRequest) returns (stream CatalogResponse) {
+		option (google.api.http) = {
+            get: "/acme/services/catalog"
+        };
+	}
+
+	// OrderItem orders a specified item from the catalog
+	rpc OrderItem(OrderItemRequest) returns (OrderResponse) {
+		option (google.api.http) = {
+            post: "/acme/services/order/{itemID}/{customerName}"
+        };		
+	}
+}
+
+message CatalogStreamRequest {}
+
+message CatalogResponse {
+	string itemID = 1;
+	string description = 2;
+	int32 price = 3;
+	int32 available = 4;
+}
+
+message OrderItemRequest {
+	string itemID = 1;
+	string customerName = 2;
+}
+
+message OrderResponse {
+	bool successful = 1;
+}

@@ -10,3 +10,8 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+# protobuf definitions
+02/protobuf/*.pb.go
+03/protobuf/*.pb.go
+03/protobuf/*.pb.gw.go
