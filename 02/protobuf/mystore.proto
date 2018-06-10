@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package protobuf;
 
-import "google/api/annotations.proto";
-
 // Interface exported by the server.
 service Store {
 	// CatalogStream returns a stream of catalog entries
