@@ -1,9 +1,10 @@
 package main
 
 import (
-	"context"
 	"io"
 	"time"
+
+	context "golang.org/x/net/context"
 
 	"github.com/pkg/errors"
 
