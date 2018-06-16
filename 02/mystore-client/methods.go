@@ -27,19 +27,18 @@ func (s storeClientState) getCatalog() ([]pb.CatalogResponse, error) {
 		return nil, errors.Wrap(err, "client.CatalogStream")
 	}
 
-	for loop := true; loop; {
+CATALOG_LOOP:
+	for {
 		var cr *pb.CatalogResponse
 
 		if cr, err = psc.Recv(); err != nil {
 			if err == io.EOF {
-				loop = false
-			} else {
-				return nil, errors.Wrap(err, "psc.Recv()")
+				break CATALOG_LOOP
 			}
-		} else {
-			catalog = append(catalog, *cr)
+			return nil, errors.Wrap(err, "psc.Recv()")
 		}
 
+		catalog = append(catalog, *cr)
 	}
 
 	return catalog, nil
