@@ -1,13 +1,14 @@
 package main
 
 import (
-	"context"
 	"log"
 	"sync"
 
+	context "golang.org/x/net/context"
+
 	"github.com/pkg/errors"
 
-	pb "github.com/dougfort/mystore/03/protobuf"
+	pb "github.com/dougfort/mystore/02/protobuf"
 )
 
 type serverState struct {

@@ -61,5 +61,4 @@ func (s storeClientState) orderItem(userName string, itemID string) error {
 	}
 
 	return nil
-
 }
