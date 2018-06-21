@@ -4,6 +4,6 @@ set -euxo pipefail
 
 MYSTOREPATH="$GOPATH/src/github.com/dougfort/mystore/01"
 
-pushd $MYSTOREPATH/mystore-server
+pushd $MYSTOREPATH/grpc-server
 go install --race
 popd
